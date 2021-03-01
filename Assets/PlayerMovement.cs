@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    private Rigidbody2D rb;
+    public float speed = 4.0f;
+    private Rigidbody2D rigidBody2D;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        if (speed == 0) speed = 4;
+        rigidBody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -19,18 +16,8 @@ public class PlayerMovement : MonoBehaviour
         float movey = Input.GetAxisRaw("Vertical");
 
         Vector3 move = new Vector2(movex, movey);
-
         move.Normalize();
 
-        Vector3 newPosition = rb.transform.position + move * (speed * Time.deltaTime);
-
-
-
-        rb.transform.position += move * (speed * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        rb.velocity = Vector3.zero;
+        rigidBody2D.transform.position += move * (speed * Time.deltaTime);
     }
 }

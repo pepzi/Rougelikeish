@@ -1,49 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Gun : MonoBehaviour
 {
-    public GameObject bullet;
-    public float reloadTime;
+    
+    public GameObject Bullet;
+    public float ReloadTime;
+    public float Speed;
+    public Camera Cam;
 
-    public float speed;
-    public Camera cam;
-    private float lastDelta;
+    private float _lastDelta;
 
 
     private void Awake()
     {
-        if (cam == null) cam = Camera.main;
+        if (Cam == null) Cam = Camera.main;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        Physics2D.IgnoreLayerCollision(3, 3, true);
-        Physics2D.IgnoreLayerCollision(6, 3, true);
-        Debug.Log(cam.pixelWidth + "x" + cam.pixelHeight);
+        Physics2D.IgnoreLayerCollision(Constants.GunLayer, Constants.GunLayer, true);
+        Physics2D.IgnoreLayerCollision(Constants.PlayerLayer, Constants.GunLayer, true);
     }
 
     void Update()
     {
         if ( Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) )
         {
-            if (lastDelta >= reloadTime)
+            if (_lastDelta >= ReloadTime)
             {
                 Vector2 screenMousePosition = Input.mousePosition;
                 
-                Vector2 mousePosition = cam.ScreenToWorldPoint(screenMousePosition);
+                Vector2 mousePosition = Cam.ScreenToWorldPoint(screenMousePosition);
 
                 Vector2 direction = mousePosition - (Vector2)transform.position;
                 direction.Normalize();
-                direction *= speed;
+                direction *= Speed;
 
-                GameObject bull = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                GameObject bull = Instantiate(Bullet, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
                 bull.GetComponent<FixedProjectile>().SetTarget(direction);
-                lastDelta = 0;
+                _lastDelta = 0;
             }           
         }
-        lastDelta += Time.deltaTime;
+        _lastDelta += Time.deltaTime;
     }
 }
