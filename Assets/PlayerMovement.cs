@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector2(movex, movey);
         move.Normalize();
 
-        rigidBody2D.transform.position += move * (speed * Time.deltaTime);
+
+        rigidBody2D.velocity = move* speed;
+//        rigidBody2D.transform.position += move * (speed * Time.deltaTime);
     }
 }

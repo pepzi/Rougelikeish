@@ -7881,10 +7881,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dff4e41905ea14eb7fa5e4a1028c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4226341738128046039, guid: 3238ae655ecb505419d185c40b04ec06, type: 3}
-  reloadTime: 0.3
-  speed: 6
-  cam: {fileID: 0}
+  Bullet: {fileID: 4226341738128046039, guid: 3238ae655ecb505419d185c40b04ec06, type: 3}
+  ReloadTime: 0.2
+  Speed: 10
+  Cam: {fileID: 0}
 --- !u!1 &1210095606
 GameObject:
   m_ObjectHideFlags: 0
@@ -8072,7 +8072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6023d25ffbd51e8499431b5be8691a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 4
 --- !u!212 &1871651899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8110,8 +8110,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 988286085
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7152930139536384079, guid: 2210624e4dc3e734ebc15b93b8ce14fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
