@@ -30,15 +30,14 @@ public class Gun : MonoBehaviour
             if (_lastDelta >= ReloadTime)
             {
                 Vector2 screenMousePosition = Input.mousePosition;
-                
                 Vector2 mousePosition = Cam.ScreenToWorldPoint(screenMousePosition);
-
                 Vector2 direction = mousePosition - (Vector2)transform.position;
+                
                 direction.Normalize();
                 direction *= Speed;
 
-                GameObject bull = Instantiate(Bullet, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
-                bull.GetComponent<FixedProjectile>().SetTarget(direction);
+                GameObject _bullet = Instantiate(Bullet, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                _bullet.GetComponent<FixedProjectile>().SetTarget(direction);
                 _lastDelta = 0;
             }           
         }

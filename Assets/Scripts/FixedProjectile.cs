@@ -6,12 +6,12 @@ public class FixedProjectile : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.layer = 3;
+        gameObject.layer = Constants.GunLayer;
     }
 
-    public void SetTarget(Vector2 _target)
+    public void SetTarget(Vector2 _velocity)
     {
-        Velocity = _target;
+        Velocity = _velocity;
     }
 
     void Update()
