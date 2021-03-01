@@ -5,12 +5,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 4.0f;
 
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D _rigidBody2D;
+    private Animator _animator;
     private Vector2 _velocity;
 
     private void Awake()
     {
-        rigidBody2D = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _velocity = Vector2.zero;
     }
 
@@ -23,31 +25,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        if (_velocity.x > 0)
+        if (_velocity == Vector2.zero)
         {
-            transform.localScale = new Vector2(1.0f, 1.0f);
+            _animator.SetBool("isWalking", false);
+            return;
         }
-        if (_velocity.x < 0)
+        else
         {
-            transform.localScale = new Vector2(-1.0f, 1.0f);
-        }
-        if (_velocity.y > 0)
-        {
-
-        }
-        if (_velocity.y < 0)
-        {
-
+            _animator.SetBool("isWalking", true);
+            _animator.SetFloat("movex", _velocity.x);
+            _animator.SetFloat("movey", _velocity.y);
         }
     }
 
     private void MovePlayer()
     {
-        rigidBody2D.velocity = _velocity * speed;
+        _rigidBody2D.velocity = _velocity * speed;
     }
 
     private void HandleInput()
     {
+        _velocity = Vector2.zero;
         _velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         _velocity.Normalize();
     }
